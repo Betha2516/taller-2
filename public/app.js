@@ -33,11 +33,6 @@ darkModeToggle.addEventListener('click', () => {
         darkModeToggle.textContent = '🌙';
     }
 });
-// Importar Polyglot (si usas Node.js o un bundler como Webpack)
-import Polyglot from 'node-polyglot';
-
-// Si usas Polyglot directamente en el navegador, omite la línea de importación.
-
 // Crear una instancia de Polyglot
 const polyglot = new Polyglot();
 
