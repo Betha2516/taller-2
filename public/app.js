@@ -44,7 +44,7 @@ const polyglot = new Polyglot();
 
 // Cargar las traducciones según el idioma seleccionado
 function loadTranslations(lang) {
-    fetch(translations/${lang}.json)
+    fetch(`translations/${lang}.json`)
         .then(response => response.json())
         .then(translations => {
             polyglot.extend(translations); // Cargar las traducciones en Polyglot
