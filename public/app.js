@@ -1,38 +1,35 @@
-window.addEventListener("scroll", function(){
+window.addEventListener("scroll", function () {
     var header = document.getElementById("navbar");
     header.classList.toggle("sticky", this.window.scrollY > 0);
 })
 
-document.querySelectorAll(".go-to-seccion-contacto").forEach(button => 
-    {
-        button.addEventListener("click", function () {
-            document.getElementById("seccion-contacto").scrollIntoView({ behavior: "smooth" });
-        });
+document.querySelectorAll(".go-to-seccion-contacto").forEach(button => {
+    button.addEventListener("click", function () {
+        document.getElementById("seccion-contacto").scrollIntoView({ behavior: "smooth" });
     });
+});
 
 
-// Selecciona el botón de modo oscuro
+// Obtener referencia al botón
 const darkModeToggle = document.getElementById('dark-mode-toggle');
 
-// Verifica si el modo oscuro está activo en el localStorage
-const isDarkMode = localStorage.getItem('darkMode') === 'enabled';
-
-// Aplica el modo oscuro si está activo
-if (isDarkMode) {
+// Verificar si el usuario ya tiene una preferencia guardada
+const savedMode = localStorage.getItem('dark-mode');
+if (savedMode === 'enabled') {
     document.body.classList.add('dark-mode');
-    darkModeToggle.textContent = '☀️'; // Cambia el ícono a sol
+    darkModeToggle.textContent = '☀️';
 }
 
-// Alterna el modo oscuro al hacer clic en el botón
+// Función para alternar entre modo claro y oscuro
 darkModeToggle.addEventListener('click', () => {
     document.body.classList.toggle('dark-mode');
 
-    // Cambia el ícono del botón
+    // Guardar la preferencia del usuario en localStorage
     if (document.body.classList.contains('dark-mode')) {
+        localStorage.setItem('dark-mode', 'enabled');
         darkModeToggle.textContent = '☀️';
-        localStorage.setItem('darkMode', 'enabled'); // Guarda la preferencia
     } else {
+        localStorage.setItem('dark-mode', 'disabled');
         darkModeToggle.textContent = '🌙';
-        localStorage.setItem('darkMode', 'disabled'); // Guarda la preferencia
     }
 });
