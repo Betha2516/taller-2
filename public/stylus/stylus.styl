@@ -621,3 +621,50 @@ header .sticky
         padding-right: 50px
         padding-left: 50px
 
+// Modo oscuro
+body.dark-mode
+    background-color: #121212
+    color: #ffffff
+
+    .navbar
+        background-color: #1f1f1f
+        color: #ffffff
+
+    .menu-item a
+        color: #ffffff
+
+    .splide__slide
+        background-color: #1f1f1f
+        color: #ffffff
+
+    .gallery
+        background-color: #1f1f1f
+        color: #ffffff
+
+    .contact
+        background-color: #1f1f1f
+        color: #ffffff
+
+    .footer-black
+        background-color: #1f1f1f
+        color: #ffffff
+
+// Botón de modo oscuro
+.dark-mode-toggle
+    position: fixed
+    bottom: 20px
+    left: 20px
+    width: 50px
+    height: 50px
+    background-color: #333
+    border: none
+    border-radius: 50%
+    color: #fff
+    font-size: 24px
+    cursor: pointer
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2)
+    z-index: 1000
+    transition: background-color 0.3s
+
+    &:hover
+        background-color: #555
