@@ -623,13 +623,6 @@ body.dark-mode {
   background-color: #121212;
   color: #fff;
 }
-body.dark-mode .navbar {
-  background-color: #1f1f1f;
-  color: #fff;
-}
-body.dark-mode .menu-item a {
-  color: #fff;
-}
 body.dark-mode .splide__slide {
   background-color: #1f1f1f;
   color: #fff;
