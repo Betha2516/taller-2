@@ -1,3 +1,4 @@
+
 window.addEventListener("scroll", function () {
     var header = document.getElementById("navbar");
     header.classList.toggle("sticky", this.window.scrollY > 0);
@@ -49,17 +50,26 @@ function loadTranslations(lang) {
 
 // Función para actualizar la interfaz de usuario con las traducciones
 function updateUI() {
-    document.getElementById('welcome').textContent = polyglot.t('welcome');
+    // Actualizar textos en la interfaz
+    document.getElementById('Bienvenida').textContent = polyglot.t('Bienvenida');
     document.getElementById('about').textContent = polyglot.t('about');
     document.getElementById('contact').textContent = polyglot.t('contact');
     document.getElementById('description').textContent = polyglot.t('description');
+    document.getElementById('projects').textContent = polyglot.t('projects');
+    document.getElementById('contact_us').textContent = polyglot.t('contact_us');
+    document.getElementById('portfolio_title').textContent = polyglot.t('portfolio_title');
+    document.getElementById('portfolio_subtitle').textContent = polyglot.t('portfolio_subtitle');
+    document.getElementById('footer_thanks').textContent = polyglot.t('footer_thanks');
+    document.getElementById('footer_rights').textContent = polyglot.t('footer_rights');
 }
 
-// Cargar el idioma por defecto (por ejemplo, inglés)
-loadTranslations('en');
+// Cargar el idioma por defecto (por ejemplo, español)
+let savedLang = localStorage.getItem('language') || 'es';
+loadTranslations(savedLang);
+document.getElementById('language-selector').value = savedLang;
 
-// Cambiar el idioma dinámicamente
 document.getElementById('language-selector').addEventListener('change', (event) => {
     const selectedLang = event.target.value;
+    localStorage.setItem('language', selectedLang); // Guardar la preferencia del idioma
     loadTranslations(selectedLang);
 });

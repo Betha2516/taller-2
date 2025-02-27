@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Nuestro Portafolio</title>
+    <title id="Bienvenida">Nuestro Portafolio</title>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" type="text/css"
         href="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/css/splide.min.css">
@@ -13,13 +13,13 @@
 <body>
     <header>
         <div class="navbar" id="navbar">
-            <h1>Nuestro Portafolio</h1>
+            <h1 id="Bienvenida">Nuestro Portafolio</h1>
             <nav class="menu-nav">
                 <ul>
                     <li class="menu-item"><a class="active" href="#">Home</a></li>
-                    <li class="menu-item"><a href="#">About</a></li>
-                    <li class="menu-item" style="margin-right:20px;"><a href="#">Projects</a></li>
-                    <li class="menu-item"><button class="go-to-seccion-contacto">Contacto</button></li>
+                    <li class="menu-item"><a id="about" href="#">About</a></li>
+                    <li class="menu-item" style="margin-right:20px;"><a id="projects" href="#">Projects</a></li>
+                    <li class="menu-item"><button id="contact_us" class="go-to-seccion-contacto">Contacto</button></li>
                 </ul>
             </nav>
         </div>
@@ -35,10 +35,11 @@
                     <div class="splide__slide__container">
                         <div class="content">
                             <h2>Carolina Vargas: Desarrolladora Full Stack</h2>
-                            <p>Con competencias avanzadas en desarrollo de front-end Incluyendo frameworks, backend,
+                            <p id="description">Con competencias avanzadas en desarrollo de front-end Incluyendo
+                                frameworks, backend,
                                 bases de datos y devops.</p>
                             <div class="buttons">
-                                <button class="btn primary go-to-seccion-contacto">Contáctanos</button>
+                                <button id="contact_us" class="btn primary go-to-seccion-contacto">Contáctanos</button>
                             </div>
                         </div>
                     </div>
@@ -47,10 +48,11 @@
                     <div class="splide__slide__container">
                         <div class="content">
                             <h2>Alfonso Jiménez: Software Project Manager</h2>
-                            <p>Con competencias avanzadas en desarrollo full stack, gestión de proyectos y metodologías
+                            <p id="description">Con competencias avanzadas en desarrollo full stack, gestión de
+                                proyectos y metodologías
                                 ágiles</p>
                             <div class="buttons">
-                                <button class="btn primary go-to-seccion-contacto">Contáctanos</button>
+                                <button id="contact_us" class="btn primary go-to-seccion-contacto">Contáctanos</button>
                             </div>
                         </div>
                     </div>
@@ -59,10 +61,11 @@
                     <div class="splide__slide__container">
                         <div class="content">
                             <h2>Samuel Betancur : Desarrollador backend</h2>
-                            <p>Con competencias avanzadas en desarrollo backend, arquitectura de software y optimización
+                            <p id="description">Con competencias avanzadas en desarrollo backend, arquitectura de
+                                software y optimización
                                 de bases de datos.</p>
                             <div class="buttons">
-                                <button class="btn primary go-to-seccion-contacto">Contáctanos</button>
+                                <button id="contact_us" class="btn primary go-to-seccion-contacto">Contáctanos</button>
                             </div>
                         </div>
                     </div>
@@ -190,17 +193,16 @@
         </nav>
         <div class="horiz-line white"></div>
         <select id="language-selector">
-            <option value="en">English</option>
             <option value="es">Español</option>
+            <option value="en">English</option>
+
         </select>
         <p>Gracias por visualizar nuestro portafolio.</p>
         <p>&copy; 2025 Nuestro Portafolio. All rights reserved.</p>
     </footer>
 
     <script src="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/js/splide.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/node-polyglot/2.4.0/polyglot.min.js"></script>
     <script src="app.js"></script>
-
     <script>
         new Splide('.splide', {
             height: '530px',
