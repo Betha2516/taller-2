@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nuestro Portafolio</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" type="text/css"
+        href="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/css/splide.min.css">
+</head>
+
+<body>
+    <header>
+        <div class="navbar" id="navbar">
+            <h1>Nuestro Portafolio</h1>
+            <nav class="menu-nav">
+                <ul>
+                    <li class="menu-item"><a class="active" href="#">Home</a></li>
+                    <li class="menu-item"><a href="#">About</a></li>
+                    <li class="menu-item" style="margin-right:20px;"><a href="#">Projects</a></li>
+                    <li class="menu-item"><button class="go-to-seccion-contacto">Contacto</button></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <a href="https://www.whatsapp.com/?lang=es_LA" class="floating-button"></a>
+
+    <section class="splide">
+        <div class="splide__track">
+            <ul class="splide__list">
+                <li class="splide__slide bg-image image-1">
+                    <div class="splide__slide__container">
+                        <div class="content">
+                            <h2>Carolina Vargas: Desarrolladora Full Stack</h2>
+                            <p>Con competencias avanzadas en desarrollo de front-end Incluyendo frameworks, backend,
+                                bases de datos y devops.</p>
+                            <div class="buttons">
+                                <button class="btn primary go-to-seccion-contacto">Contáctanos</button>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+                <li class="splide__slide bg-image image-2">
+                    <div class="splide__slide__container">
+                        <div class="content">
+                            <h2>Alfonso Jiménez: Software Project Manager</h2>
+                            <p>Con competencias avanzadas en desarrollo full stack, gestión de proyectos y metodologías
+                                ágiles</p>
+                            <div class="buttons">
+                                <button class="btn primary go-to-seccion-contacto">Contáctanos</button>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+                <li class="splide__slide bg-image image-3">
+                    <div class="splide__slide__container">
+                        <div class="content">
+                            <h2>Samuel Betancur : Desarrollador backend</h2>
+                            <p>Con competencias avanzadas en desarrollo backend, arquitectura de software y optimización
+                                de bases de datos.</p>
+                            <div class="buttons">
+                                <button class="btn primary go-to-seccion-contacto">Contáctanos</button>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </section>
+
+    <section class="gallery">
+        <div class="container-title">
+            <h3>Nuestro <span>portafolio</span> de proyectos</h3>
+            <div class="horiz-line"></div>
+            <p>Proyectos de los que hemos formado parte</p>
+        </div>
+
+        <div class="grid-3col">
+            <div class="item-grid">
+                <img src="img/alfonso1.png" alt="">
+                <div class="overlay">
+                    <h4>Sistema de gestión de practicantes</h4>
+                    <p>Para estudiantes de la facultad de medicinas</p>
+                </div>
+            </div>
+            <div class="item-grid">
+                <img src="img/alfonso2.png" alt="">
+                <div class="overlay">
+                    <h4>Página web</h4>
+                    <p>Proyectos personales</p>
+                </div>
+            </div>
+            <div class="item-grid">
+                <img src="img/alfonso3.png" alt="">
+                <div class="overlay">
+                    <h4>Predicción de estatus de obesidad</h4>
+                    <p>Modelo de Inteligencia Artificial para la materia</p>
+                </div>
+            </div>
+        </div>
+        <div class="grid-3col">
+            <div class="item-grid">
+                <img src="img/caro1.JPG" style="object-fit:fill;" alt="">
+                <div class="overlay">
+                    <h4>Juego interactivo</h4>
+                    <p>Elementos dinámicos y texto</p>
+                </div>
+            </div>
+            <div class="item-grid">
+                <img src="img/caro2.JPG" alt="">
+                <div class="overlay">
+                    <h4>Juego del número secreto</h4>
+                    <p>Adivina el número para ganar</p>
+                </div>
+            </div>
+            <div class="item-grid">
+                <img src="img/caro3.JPG" alt="">
+                <div class="overlay">
+                    <h4>Tienda Geek</h4>
+                    <p>Portal de tienda con productos dinámicos</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <hr class="gallery-separator">
+
+    <section class="video-section">
+        <div class="container-title">
+            <h3>Beautiful Nature Video in 4K - <span>Autumn River Sounds</span> - 5 Hours Long</h3>
+            <img src="img/youtube.png" class="youtube-icon">
+        </div>
+        <div class="yt-stats">
+            <span>4:50</span><span>|</span><span>4K Relaxation Channel</span>
+            <div class="yt-views"><img src="img/views.png" class="views-icon">254</div>
+        </div>
+        <iframe class="video-frame" height="600" src="https://www.youtube.com/embed/WNCl-69POro?si=1khtNBHOdUakopZ8"
+            title="YouTube video player" frameborder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            allowfullscreen>
+        </iframe>
+    </section>
+
+    <section class="contact" id="seccion-contacto">
+        <div class="grid-2col">
+            <div class="contact-form grid-2col-item">
+                <h3>Contactános</h3>
+                <p>Ingresa tus datos</p>
+                <form class="form-grid-4row">
+                    <div class="form-row">
+                        <input type="email" class="form-input" placeholder="Correo electrónico" id="email">
+                        <input type="text" class="form-input" placeholder="Nombre completo" id="full-name">
+                    </div>
+                    <div class="form-row">
+                        <select name="cars" class="form-input" id="dropdown-country">
+                            <option value="NL">🇨🇴 Colombia</option>
+                            <option value="DE">🇩🇪 Alemania</option>
+                            <option value="FR">🇫🇷 Francia</option>
+                            <option value="ES">🇪🇸 España</option>
+                            <option value="points">...</option>
+                        </select>
+                        <input type="number" class="form-input" placeholder="Número telefónico" id="phone-number">
+                    </div>
+                    <div class="form-row">
+                        <input type="text" class="form-input" placeholder="Escribe tu mensaje aquí" id="message">
+                    </div>
+                    <button type="submit">Enviar</button>
+                </form>
+            </div>
+            <div class="grid-2col-item">
+                <div class="container-title">
+                    <h3>Contáctanos</h3>
+                    <div class="horiz-line"></div>
+                    <p>Llena el formulario con toda confianza, tus datos están protegidos</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer-black">
+        <nav class="menu-nav footer-nav">
+            <ul>
+                <li class="menu-item"><a class="active" href="#">Home</a></li>
+                <li class="menu-item"><a href="#">About</a></li>
+                <li class="menu-item"><a href="#">Projects</a></li>
+            </ul>
+        </nav>
+        <div class="horiz-line white"></div>
+        <p>Gracias por visualizar nuestro portafolio.</p>
+        <p>&copy; 2025 Nuestro Portafolio. All rights reserved.</p>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/js/splide.min.js"></script>
+    <script src="app.js"></script>
+
+    <script>
+        new Splide('.splide', {
+            height: '530px',
+        }).mount();
+    </script>
+
+</body>
+
+</html>
