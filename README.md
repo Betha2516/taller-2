@@ -45,10 +45,14 @@ Este proceso:
 Una vez generado el bundle, puedes ejecutar el proyecto en el puerto 3000 con:
 
 ```sh
-npm run start
+npm http-server dist -p 3000
 ```
+o con el siguiente comando, dependiendo de tu instalación de http-server:
+```sh
+npx http-server dist -p 3000
+```
+Esto hará que la página optimizada (bundleada) corra en localhost:3000, para cerrar la conexión con este puerto, hacer ctrl + c en la terminal que tiene el proyecto abierto.
 
-Este comando levantará un servidor local para visualizar la versión optimizada en el navegador.
 
 ## 6. Actualizar el Bundle
 
