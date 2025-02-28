@@ -623,6 +623,34 @@ body.dark-mode {
   background-color: #121212;
   color: #fff;
 }
+body.dark-mode .navbar {
+  background: #1f1f1f;
+  border: 3px solid transparent;
+  border-radius: 10px;
+  background: linear-gradient(#1f1f1f, #1f1f1f) padding-box, linear-gradient(90deg, #555, #222) border-box;
+  color: #fff;
+}
+body.dark-mode .navbar h1 {
+  color: #fff;
+}
+body.dark-mode .navbar .menu-nav li a {
+  color: #fff;
+  opacity: 1;
+}
+body.dark-mode .navbar .menu-nav li a:hover {
+  background: linear-gradient(90deg, #40c9ff, #e81cff);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+body.dark-mode .navbar .menu-nav li button {
+  background: #333;
+  color: #fff;
+  border: 1px solid #555;
+}
+body.dark-mode .navbar .menu-nav li button:hover {
+  background: #555;
+}
 body.dark-mode .splide__slide {
   background-color: #1f1f1f;
   color: #fff;
@@ -658,6 +686,10 @@ body.dark-mode .footer-black {
 }
 .dark-mode-toggle:hover {
   background-color: #555;
+}
+select {
+  width: 100px;
+  margin: 0 auto;
 }
 @-moz-keyframes borderAnimation {
   0% {

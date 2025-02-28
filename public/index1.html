@@ -16,10 +16,11 @@
             <h1 id="Bienvenida">Nuestro Portafolio</h1>
             <nav class="menu-nav">
                 <ul>
-                    <li class="menu-item"><a class="active" href="#">Home</a></li>
-                    <li class="menu-item"><a id="about" href="#">About</a></li>
-                    <li class="menu-item" style="margin-right:20px;"><a id="projects" href="#">Projects</a></li>
+                    <li class="menu-item"><a class="active" id="home" href="#">Inicio</a></li>
+                    <li class="menu-item"><a id="about" href="#">Sobre nosotros</a></li>
+                    <li class="menu-item" style="margin-right:20px;"><a id="projects" href="#">Proyectos</a></li>
                     <li class="menu-item"><button id="contact_us" class="go-to-seccion-contacto">Contacto</button></li>
+
                 </ul>
             </nav>
         </div>
@@ -34,7 +35,7 @@
                 <li class="splide__slide bg-image image-1">
                     <div class="splide__slide__container">
                         <div class="content">
-                            <h2>Carolina Vargas: Desarrolladora Full Stack</h2>
+                            <h2>Carolina Vargas: dev Full Stack</h2>
                             <p id="description">Con competencias avanzadas en desarrollo de front-end Incluyendo
                                 frameworks, backend,
                                 bases de datos y devops.</p>
@@ -60,7 +61,7 @@
                 <li class="splide__slide bg-image image-3">
                     <div class="splide__slide__container">
                         <div class="content">
-                            <h2>Samuel Betancur : Desarrollador backend</h2>
+                            <h2>Samuel Betancur : dev backend </h2>
                             <p id="description">Con competencias avanzadas en desarrollo backend, arquitectura de
                                 software y optimización
                                 de bases de datos.</p>
@@ -76,31 +77,31 @@
 
     <section class="gallery">
         <div class="container-title">
-            <h3>Nuestro <span>portafolio</span> de proyectos</h3>
+            <h3 id="title1">Nuestro <span>portafolio</span> de proyectos</h3>
             <div class="horiz-line"></div>
-            <p>Proyectos de los que hemos formado parte</p>
+            <p id="text1">Proyectos de los que hemos formado parte</p>
         </div>
 
         <div class="grid-3col">
             <div class="item-grid">
                 <img src="img/alfonso1.png" alt="">
                 <div class="overlay">
-                    <h4>Sistema de gestión de practicantes</h4>
-                    <p>Para estudiantes de la facultad de medicinas</p>
+                    <h4 id="title2">Sistema de gestión de practicantes</h4>
+                    <p id="text3">Para estudiantes de la facultad de medicinas</p>
                 </div>
             </div>
             <div class="item-grid">
                 <img src="img/alfonso2.png" alt="">
                 <div class="overlay">
-                    <h4>Página web</h4>
-                    <p>Proyectos personales</p>
+                    <h4 id="title3">Página web</h4>
+                    <p id="text4">Proyectos personales</p>
                 </div>
             </div>
             <div class="item-grid">
                 <img src="img/alfonso3.png" alt="">
                 <div class="overlay">
-                    <h4>Predicción de estatus de obesidad</h4>
-                    <p>Modelo de Inteligencia Artificial para la materia</p>
+                    <h4 id="title4">Predicción de estatus de obesidad</h4>
+                    <p id="text5">Modelo de Inteligencia Artificial para la materia</p>
                 </div>
             </div>
         </div>
@@ -108,22 +109,22 @@
             <div class="item-grid">
                 <img src="img/caro1.JPG" style="object-fit:fill;" alt="">
                 <div class="overlay">
-                    <h4>Juego interactivo</h4>
-                    <p>Elementos dinámicos y texto</p>
+                    <h4 id="title4">Juego interactivo</h4>
+                    <p id="title6">Elementos dinámicos y texto</p>
                 </div>
             </div>
             <div class="item-grid">
                 <img src="img/caro2.JPG" alt="">
                 <div class="overlay">
-                    <h4>Juego del número secreto</h4>
-                    <p>Adivina el número para ganar</p>
+                    <h4 id="title5">Juego del número secreto</h4>
+                    <p id="text7">Adivina el número para ganar</p>
                 </div>
             </div>
             <div class="item-grid">
                 <img src="img/caro3.JPG" alt="">
                 <div class="overlay">
-                    <h4>Tienda Geek</h4>
-                    <p>Portal de tienda con productos dinámicos</p>
+                    <h4 id="title6">Tienda Geek</h4>
+                    <p id="text8">Portal de tienda con productos dinámicos</p>
                 </div>
             </div>
         </div>
@@ -150,7 +151,7 @@
     <section class="contact" id="seccion-contacto">
         <div class="grid-2col">
             <div class="contact-form grid-2col-item">
-                <h3>Contactános</h3>
+                <h3 id="contact_us">Contactános</h3>
                 <p>Ingresa tus datos</p>
                 <form class="form-grid-4row">
                     <div class="form-row">
@@ -175,9 +176,9 @@
             </div>
             <div class="grid-2col-item">
                 <div class="container-title">
-                    <h3>Contáctanos</h3>
+                    <h3 id="contact_us">Contáctanos</h3>
                     <div class="horiz-line"></div>
-                    <p>Llena el formulario con toda confianza, tus datos están protegidos</p>
+                    <p id="text2">Llena el formulario con toda confianza, tus datos están protegidos</p>
                 </div>
             </div>
         </div>
@@ -186,9 +187,9 @@
     <footer class="footer-black">
         <nav class="menu-nav footer-nav">
             <ul>
-                <li class="menu-item"><a class="active" href="#">Home</a></li>
-                <li class="menu-item"><a href="#">About</a></li>
-                <li class="menu-item"><a href="#">Projects</a></li>
+                <li class="menu-item"><a id="home" class="active" href="#">Inicio</a></li>
+                <li class="menu-item"><a id="about" href="#">Sobre nosotros</a></li>
+                <li class="menu-item"><a id="projects" href=" #">Proyectos</a></li>
             </ul>
         </nav>
         <div class="horiz-line white"></div>
@@ -197,8 +198,8 @@
             <option value="en">English</option>
 
         </select>
-        <p>Gracias por visualizar nuestro portafolio.</p>
-        <p>&copy; 2025 Nuestro Portafolio. All rights reserved.</p>
+        <p id="footer_thanks">Gracias por visualizar nuestro portafolio.</p>
+        <p id="footer_rights">&copy; 2025 Nuestro Portafolio. All rights reserved.</p>
     </footer>
 
     <script src="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/js/splide.min.js"></script>

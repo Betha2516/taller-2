@@ -626,6 +626,33 @@ body.dark-mode
     background-color: #121212
     color: #ffffff
 
+    .navbar
+        background: #1f1f1f
+        border: 3px solid transparent
+        border-radius: 10px
+        background: linear-gradient(#1f1f1f, #1f1f1f) padding-box, linear-gradient(90deg, #555, #222) border-box
+        color: #ffffff
+
+        h1
+            color: #ffffff
+
+        .menu-nav li a
+            color: #ffffff
+            opacity: 1
+
+        .menu-nav li a:hover
+            background: linear-gradient(90deg, #40c9ff, #e81cff)
+            -webkit-background-clip: text
+            background-clip: text
+            color: transparent
+
+        .menu-nav li button
+            background: #333
+            color: #fff
+            border: 1px solid #555
+
+            &:hover
+                background: #555
 
     .splide__slide
         background-color: #1f1f1f
@@ -663,3 +690,7 @@ body.dark-mode
 
     &:hover
         background-color: #555
+
+select
+    width: 100px
+    margin: 0 auto

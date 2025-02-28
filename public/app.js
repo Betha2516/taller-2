@@ -34,42 +34,90 @@ darkModeToggle.addEventListener('click', () => {
         darkModeToggle.textContent = '🌙';
     }
 });
-// Crear una instancia de Polyglot
-const polyglot = new Polyglot();
+document.addEventListener("DOMContentLoaded", function () {
+    // Definir textos en distintos idiomas
+    const translations = {
+        es: {
+            Bienvenida: "Nuestro Portafolio",
+            home: "Inicio",
+            about: "Sobre nosotros",
+            projects: "Proyectos",
+            contact_us: "Contacto",
+            title1: "Nuestro portafolio de proyectos",
+            text1: "Proyectos de los que hemos formado parte",
+            text2: "Llena el formulario con toda confianza, tus datos están protegidos",
+            title2: "Sistema de gestión de practicantes",
+            text3: "Para estudiantes de la facultad de medicinass",
+            text4: "Proyectos personales",
+            text5: "Modelo de Inteligencia Artificial para la materia",
+            text6: "Elementos dinámicos y texto",
 
-// Cargar las traducciones según el idioma seleccionado
-function loadTranslations(lang) {
-    fetch(`translations/${lang}.json`)
-        .then(response => response.json())
-        .then(translations => {
-            polyglot.extend(translations); // Cargar las traducciones en Polyglot
-            updateUI(); // Actualizar la interfaz de usuario con las traducciones
-        })
-        .catch(error => console.error('Error loading translations:', error));
-}
+            text7: "Adivina el número para ganar",
+            text8: "Portal de tienda con productos dinámicos",
+            title3: "Página web",
+            title4: "Predicción de estatus de obesidad",
+            title5: "Juego interactivo",
+            title6: "Juego del número secreto",
+            description: "Con competencias avanzadas en desarrollo full stack, gestión de proyectos y metodologías ágiles.",
+            footer_thanks: "Gracias por visualizar nuestro portafolio.",
+            footer_rights: "© 2025 Nuestro Portafolio. Todos los derechos reservados."
+        },
+        en: {
+            Bienvenida: "Our Portfolio",
+            home: "Home",
+            about: "About us",
+            projects: "Projects",
+            contact_us: "Contact",
+            title1: "Our project portfolio",
+            text1: "Projects we have been part of",
+            text2: "Fill out the form with confidence, your data is protected ",
+            title2: "Internship Management System",
+            text3: "For students of the Faculty of Medicine",
+            text4: "Personal projects",
+            text5: "Artificial Intelligence model for the subject",
+            text6: "Dynamic elements and text",
+            text7: "Guess the number to win",
+            text8: "Store portal with dynamic products",
+            title3: "Website",
+            title4: "Obesity Status Prediction",
+            title5: "Interactive Game",
+            title6: "Number Guessing Game",
+            description: "With advanced skills in full-stack development, project management, and agile methodologies.",
+            footer_thanks: "Thank you for viewing our portfolio.",
+            footer_rights: "© 2025 Our Portfolio. All rights reserved."
+        }
+    };
 
-// Función para actualizar la interfaz de usuario con las traducciones
-function updateUI() {
-    // Actualizar textos en la interfaz
-    document.getElementById('Bienvenida').textContent = polyglot.t('Bienvenida');
-    document.getElementById('about').textContent = polyglot.t('about');
-    document.getElementById('contact').textContent = polyglot.t('contact');
-    document.getElementById('description').textContent = polyglot.t('description');
-    document.getElementById('projects').textContent = polyglot.t('projects');
-    document.getElementById('contact_us').textContent = polyglot.t('contact_us');
-    document.getElementById('portfolio_title').textContent = polyglot.t('portfolio_title');
-    document.getElementById('portfolio_subtitle').textContent = polyglot.t('portfolio_subtitle');
-    document.getElementById('footer_thanks').textContent = polyglot.t('footer_thanks');
-    document.getElementById('footer_rights').textContent = polyglot.t('footer_rights');
-}
+    // Obtener el selector de idioma
+    const languageSelector = document.getElementById("language-selector");
 
-// Cargar el idioma por defecto (por ejemplo, español)
-let savedLang = localStorage.getItem('language') || 'es';
-loadTranslations(savedLang);
-document.getElementById('language-selector').value = savedLang;
+    // Función para cambiar el idioma
+    function changeLanguage(lang) {
+        document.querySelectorAll("#Bienvenida").forEach(el => el.textContent = translations[lang].Bienvenida);
+        document.querySelectorAll("#home").forEach(el => el.textContent = translations[lang].home);
+        document.querySelectorAll("#about").forEach(el => el.textContent = translations[lang].about);
+        document.querySelectorAll("#projects").forEach(el => el.textContent = translations[lang].projects);
+        document.querySelectorAll("#contact_us").forEach(el => el.textContent = translations[lang].contact_us);
+        document.querySelectorAll("#description").forEach(el => el.textContent = translations[lang].description);
+        document.getElementById("title1").textContent = translations[lang].title1;
+        document.getElementById("text1").textContent = translations[lang].text1;
+        document.getElementById("text2").textContent = translations[lang].text2;
+        document.getElementById("footer_thanks").textContent = translations[lang].footer_thanks;
+        document.getElementById("footer_rights").textContent = translations[lang].footer_rights;
 
-document.getElementById('language-selector').addEventListener('change', (event) => {
-    const selectedLang = event.target.value;
-    localStorage.setItem('language', selectedLang); // Guardar la preferencia del idioma
-    loadTranslations(selectedLang);
+
+
+        // Guardar el idioma seleccionado en localStorage
+        localStorage.setItem("selectedLanguage", lang);
+    }
+
+    // Cargar idioma guardado o establecer español por defecto
+    const savedLanguage = localStorage.getItem("selectedLanguage") || "es";
+    languageSelector.value = savedLanguage;
+    changeLanguage(savedLanguage);
+
+    // Detectar cambio en el selector y actualizar idioma
+    languageSelector.addEventListener("change", function () {
+        changeLanguage(this.value);
+    });
 });
