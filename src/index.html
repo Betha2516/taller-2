@@ -5,7 +5,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title id="Bienvenida">Nuestro Portafolio</title>
-    <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" type="text/css"
         href="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/css/splide.min.css">
 </head>
@@ -84,21 +83,21 @@
 
         <div class="grid-3col">
             <div class="item-grid">
-                <img src="img/alfonso1.png" alt="">
+                <img src="/assets/images/alfonso1.png" alt="">
                 <div class="overlay">
                     <h4 id="title2">Sistema de gestión de practicantes</h4>
                     <p id="text3">Para estudiantes de la facultad de medicinas</p>
                 </div>
             </div>
             <div class="item-grid">
-                <img src="img/alfonso2.png" alt="">
+                <img src="/assets/images/alfonso2.png" alt="">
                 <div class="overlay">
                     <h4 id="title3">Página web</h4>
                     <p id="text4">Proyectos personales</p>
                 </div>
             </div>
             <div class="item-grid">
-                <img src="img/alfonso3.png" alt="">
+                <img src="/assets/images/alfonso3.png" alt="">
                 <div class="overlay">
                     <h4 id="title4">Predicción de estatus de obesidad</h4>
                     <p id="text5">Modelo de Inteligencia Artificial para la materia</p>
@@ -107,21 +106,21 @@
         </div>
         <div class="grid-3col">
             <div class="item-grid">
-                <img src="img/caro1.JPG" style="object-fit:fill;" alt="">
+                <img src="/assets/images/caro1.JPG" style="object-fit:fill;" alt="">
                 <div class="overlay">
                     <h4 id="title4">Juego interactivo</h4>
                     <p id="title6">Elementos dinámicos y texto</p>
                 </div>
             </div>
             <div class="item-grid">
-                <img src="img/caro2.JPG" alt="">
+                <img src="/assets/images/caro2.JPG" alt="">
                 <div class="overlay">
                     <h4 id="title5">Juego del número secreto</h4>
                     <p id="text7">Adivina el número para ganar</p>
                 </div>
             </div>
             <div class="item-grid">
-                <img src="img/caro3.JPG" alt="">
+                <img src="/assets/images/caro3.JPG" alt="">
                 <div class="overlay">
                     <h4 id="title6">Tienda Geek</h4>
                     <p id="text8">Portal de tienda con productos dinámicos</p>
@@ -135,11 +134,11 @@
     <section class="video-section">
         <div class="container-title">
             <h3>Beautiful Nature Video in 4K - <span>Autumn River Sounds</span> - 5 Hours Long</h3>
-            <img src="img/youtube.png" class="youtube-icon">
+            <img src="/assets/images/youtube.png" class="youtube-icon">
         </div>
         <div class="yt-stats">
             <span>4:50</span><span>|</span><span>4K Relaxation Channel</span>
-            <div class="yt-views"><img src="img/views.png" class="views-icon">254</div>
+            <div class="yt-views"><img src="/assets/images/views.png" class="views-icon">254</div>
         </div>
         <iframe class="video-frame" height="600" src="https://www.youtube.com/embed/WNCl-69POro?si=1khtNBHOdUakopZ8"
             title="YouTube video player" frameborder="0"
@@ -151,12 +150,12 @@
     <section class="contact" id="seccion-contacto">
         <div class="grid-2col">
             <div class="contact-form grid-2col-item">
-                <h3 id="contact_us">Contactános</h3>
+                <h3>Regístrate</h3>
                 <p>Ingresa tus datos</p>
-                <form class="form-grid-4row">
+                <form class="form-grid-4row" id="register-form">
                     <div class="form-row">
                         <input type="email" class="form-input" placeholder="Correo electrónico" id="email">
-                        <input type="text" class="form-input" placeholder="Nombre completo" id="full-name">
+                        <input type="text" class="form-input" placeholder="Nombre de usuario" id="username">
                     </div>
                     <div class="form-row">
                         <select name="cars" class="form-input" id="dropdown-country">
@@ -165,45 +164,57 @@
                             <option value="FR">🇫🇷 Francia</option>
                             <option value="ES">🇪🇸 España</option>
                             <option value="points">...</option>
-                        </select>
+                          </select>
                         <input type="number" class="form-input" placeholder="Número telefónico" id="phone-number">
                     </div>
                     <div class="form-row">
-                        <input type="text" class="form-input" placeholder="Escribe tu mensaje aquí" id="message">
+                        <input type="password" class="form-input" placeholder="Escribe tu contraseña aquí" id="password">
                     </div>
                     <button type="submit">Enviar</button>
                 </form>
             </div>
             <div class="grid-2col-item">
                 <div class="container-title">
-                    <h3 id="contact_us">Contáctanos</h3>
+                    <h3>Regístrate</h3>
                     <div class="horiz-line"></div>
-                    <p id="text2">Llena el formulario con toda confianza, tus datos están protegidos</p>
+                    <p>Llena el formulario con toda confianza, tus datos están protegidos</p>
                 </div>
             </div>
         </div>
     </section>
 
     <footer class="footer-black">
-        <nav class="menu-nav footer-nav">
-            <ul>
-                <li class="menu-item"><a id="home" class="active" href="#">Inicio</a></li>
-                <li class="menu-item"><a id="about" href="#">Sobre nosotros</a></li>
-                <li class="menu-item"><a id="projects" href=" #">Proyectos</a></li>
-            </ul>
-        </nav>
-        <div class="horiz-line white"></div>
-        <select id="language-selector">
-            <option value="es">Español</option>
-            <option value="en">English</option>
+        <div class="footer-content-container">
+            <nav class="menu-nav footer-nav">
+                <ul>
+                    <li class="menu-item"><a class="active" href="#">Home</a></li>
+                    <li class="menu-item"><a href="#">About</a></li>
+                    <li class="menu-item"><a href="#">Projects</a></li>
+                </ul>
+            </nav>
+            <div class="horiz-line white"></div>
+            <select id="language-selector">
+                <option value="es">Español</option>
+                <option value="en">English</option>
+    
+            </select>
+            <p>Gracias por visualizar nuestro portafolio.</p>
+            <p>&copy; 2025 Nuestro Portafolio. All rights reserved.</p>
+        </div>
+        <div class="footer-login-container">
+            <h3 style="color: white; margin: 10px auto; width: 100%; text-align:center;">Inicia sesión</h3>
+            <form class="form-grid-4row" id="login-form">
+                <div class="form-row">
+                    <input type="text" class="form-input" placeholder="Nombre de usuario" id="username" style="margin-left:0px; margin-right:6px;">
+                    <input type="password" class="form-input" placeholder="Contraseña" id="password" style="width: 50%;">
+                </div>
+                <button type="submit" style="margin-top: 5px; width:50%;">Inicia sesión</button>
+            </form>
+        </div>
 
-        </select>
-        <p id="footer_thanks">Gracias por visualizar nuestro portafolio.</p>
-        <p id="footer_rights">&copy; 2025 Nuestro Portafolio. All rights reserved.</p>
     </footer>
 
     <script src="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/js/splide.min.js"></script>
-    <script src="app.js"></script>
     <script>
         new Splide('.splide', {
             height: '530px',

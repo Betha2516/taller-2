@@ -104,7 +104,7 @@ header .sticky {
   border-radius: 50%;
   height: 60px;
   width: 60px;
-  background-image: url("img/whatsapp.png");
+  background-image: url("../public/img/whatsapp.png");
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -113,18 +113,18 @@ header .sticky {
 }
 /* SLIDER */
 .bg-image {
-  background: url("img/coding.png") center/cover no-repeat;
+  background: url("../public/img/coding.png") center/cover no-repeat;
   width: 100%;
   height: auto;
 }
 .image-1 {
-  background: url("img/coding.png") center/cover no-repeat;
+  background: url("../public/img/coding.png") center/cover no-repeat;
 }
 .image-2 {
-  background: url("img/coding2.png") center/cover no-repeat;
+  background: url("../public/img/coding2.png") center/cover no-repeat;
 }
 .image-3 {
-  background: url("img/coding3.png") center/cover no-repeat;
+  background: url("../public/img/coding3.png") center/cover no-repeat;
 }
 .splide__slide img {
   width: 100%;
@@ -357,9 +357,13 @@ header .sticky {
   width: 50%;
   margin-right: 6px;
 }
-#full-name {
+#username{
   width: 50%;
   margin-left: 6px;
+}
+#password{
+  width: 100%;
+  margin: 0 auto;
 }
 #dropdown-country {
   width: 25%;
@@ -410,6 +414,10 @@ header .sticky {
   width: 60%;
   font-family: "Montserrat", serif;
   color: #fff;
+}
+.footer-login-container{
+  width: 30%;
+  margin: 0 auto;
 }
 .footer-black nav {
   width: 60%;
