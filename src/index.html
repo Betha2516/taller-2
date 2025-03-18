@@ -150,64 +150,46 @@
     </section>
 
     <section class="contact" id="seccion-contacto">
-        <div class="grid-2col">
-            <div class="contact-form grid-2col-item">
-                <h3 id="titulo_registro">Regístrate</h3>
-                <p id="info_re">Ingresa tus datos</p>
-                <form class="form-grid-4row" id="register-form">
-                    <div class="form-row">
-                        <input type="email" class="form-input" placeholder="Correo electrónico" id="correo">
-                        <input type="text" class="form-input" placeholder="Nombre de usuario" id="nombre">
-                    </div>
-                    <div class="form-row">
-                        <select name="cars" class="form-input" id="dropdown-country">
-                            <option value="NL">🇨🇴 Colombia</option>
-                            <option value="DE">🇩🇪 Alemania</option>
-                            <option value="FR">🇫🇷 Francia</option>
-                            <option value="ES">🇪🇸 España</option>
-                            <option value="points">...</option>
-                        </select>
-                        <input type="number" class="form-input" placeholder="Número telefónico" id="numero-tel">
-                    </div>
-                    <div class="form-row">
-                        <input type="password" class="form-input" placeholder="Escribe tu contraseña aquí"
-                            id="password">
-                    </div>
-                    <button id="boton_enviar" type="submit">Enviar</button>
-                </form>
-            </div>
-            <div class="grid-2col-item">
-                <div class="container-title">
-                    <h3 id="info_registro">Regístrate</h3>
-                    <div class="horiz-line"></div>
-                    <p id="texto_registro">Llena el formulario con toda confianza, tus datos están protegidos</p>
+        <div class="info-login">
+            <h1>Iniciar Sesión</h1>
+            <form>
+                <fieldset>
+                    <label for="email">Correo</label>
+                    <input type="email" id="email" name="email" placeholder="ejemplo@correo.com">
+
+                    <label for="password">Contraseña</label>
+                    <input type="password" id="password" name="password" placeholder="********">
+                </fieldset>
+                <div class="botones-login">
+                    <button type="submit">Iniciar Sesión</button>
+                    <a href="registro.html">Registrarse</a>
                 </div>
-            </div>
+            </form>
+        </div>
+        <div class="info-registro">
+            <h1>Ingresa tus datos</h1>
+            <p>En nuestra plataforma habrá opciones para contratar a <br> personas calificadas y con una excelente
+                puntuación.</p>
         </div>
     </section>
 
     <footer class="footer-black">
-        <div class="footer-content-container">
-            <nav class="menu-nav footer-nav">
-                <ul>
-                    <li class="menu-item"><a class="active" href="#">Inicio</a></li>
-                    <li class="menu-item"><a href="#">Sobre nosotros</a></li>
-                    <li class="menu-item"><a href="#">Proyectos</a></li>
-                </ul>
-            </nav>
+        <div class="barra-redes">
+            <p id="info-nosotros">Somos una empresa creativa, ofrece servicios e ideas inovadoras.</p>
+            <ul class="columna">
+                <li><a href="#">Instagram</a></li>
+                <li><a href="#">Facebook</a></li>
+                <li><a href="#">X</a></li>
+            </ul>
+            <ul class="columna">
+                <li><a href="#">Inicio</a></li>
+                <li><a href="#">Sobre nosotros</a></li>
+                <li><a href="#">Contacto</a></li>
+            </ul>
         </div>
+        <br>
         <p id="info_footer">Gracias por visualizar nuestro portafolio.</p>
         <p id="info_copy">&copy; 2025 Nuestro Portafolio. All rights reserved.</p>
-        <div class="footer-login-container">
-            <h3>Inicia sesión</h3>
-            <form class="form-grid-4row" id="login-form">
-                <div class="form-row">
-                    <input type="text" class="form-input" placeholder="Nombre de usuario" id="nombre_sesion">
-                    <input type="password" class="form-input" placeholder="Contraseña" id="contraseña_sesion">
-                </div>
-                <button type="submit" id="boton_sesion">Inicia sesión</button>
-            </form>
-        </div>
     </footer>
 
 
