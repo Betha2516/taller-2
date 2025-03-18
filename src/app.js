@@ -1,6 +1,32 @@
 import './styles.css';
 import './stylus/stylus.styl';
 
+// Obtener elementos para mostrar en la página post-login, con filtro.
+export const obtenerCienElementos = async (token, filtro = '') => {
+    try {
+        // Construir URL con el filtro, en caso de no haber filtro trae todos los registros
+        const url = `https://cplmwzravtgwqtwckpkj.supabase.co/rest/v1/list_projects?select=*&project=ilike.%${filtro}%`;
+
+        const response = await fetch(url, {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+                'apikey': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImNwbG13enJhdnRnd3F0d2NrcGtqIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDIwNDg0NTQsImV4cCI6MjA1NzYyNDQ1NH0.C_H150z98w7rF0I3bFW6fL1OlVpwzc8W0Qv4gRnq504',
+                'Authorization': `Bearer ${token}`
+            }
+        });
+
+        const data = await response.json();
+
+        if (!response.ok) throw new Error(data.message || 'Error al obtener datos');
+
+        return data;
+    } catch (error) {
+        console.error('Error al obtener datos:', error.message);
+        return null;
+    }
+};
+
 window.addEventListener("scroll", function () {
     var header = document.getElementById("navbar");
     header.classList.toggle("sticky", this.window.scrollY > 0);
