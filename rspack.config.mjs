@@ -12,7 +12,7 @@ const targets = ["chrome >= 87", "edge >= 88", "firefox >= 78", "safari >= 14"];
 export default defineConfig({
   // Cambiar la entrada principal a tu app.js
   entry: {
-    main: "./src/app.js"
+    main: "./src/scripts/app.js"
   },
   output: {
     path: path.resolve(__dirname, 'dist'),
@@ -21,15 +21,15 @@ export default defineConfig({
   },
   module: {
     rules: [
-	  {
-		test: /\.styl$/,
+      {
+        test: /\.styl$/,
         use: [
           'style-loader',  // Inyecta CSS en el DOM
           'css-loader',    // Interpreta @import, url(), etc.
           'postcss-loader', // Opcional: para procesamiento adicional como autoprefixer
           'stylus-loader'  // Compila Stylus a CSS
         ]
-	  },
+      },
       // Regla para SVG
       {
         test: /\.svg$/,
@@ -95,9 +95,9 @@ export default defineConfig({
   },
   plugins: [
     // Plugin para HTML
-    new rspack.HtmlRspackPlugin({ 
+    new rspack.HtmlRspackPlugin({
       template: "./src/index.html",
-	  minify: true
+      minify: true
     }),
     // Plugin para copiar carpeta de imágenes
     new rspack.CopyRspackPlugin({
