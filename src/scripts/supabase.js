@@ -5,12 +5,12 @@ const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZS
 const supabase = createClient(supabaseUrl, supabaseKey)
 
 // Registrar usuario en la base de datos (Perfecto para poner en el register)
-export const crearNuevoUsuario = async (username, email, password) => {
+export const crearNuevoUsuario = async (username, email, celular, tipoCliente, password) => {
     try {
         const { data, error } = await supabase
             .from('page_users')
-            .insert({ username: username, email: email, password: password });
-        
+            .insert({ username: username, email: email, celular: celular, tipoCliente: tipoCliente, password: password });
+
         if (error) throw error;
 
         console.log('Inserción exitosa: ', data);
@@ -27,7 +27,7 @@ export const obtenerDatosCredenciales = async (username) => {
     try {
         const { data, error } = await supabase
             .from('characters')
-            .select('username, password') 
+            .select('username, password')
             .eq('username', username);
 
         if (error) throw error;
@@ -39,7 +39,7 @@ export const obtenerDatosCredenciales = async (username) => {
 
         console.log('Selección exitosa: ', data);
         return { data: data, error: null };
-        
+
     } catch (error) {
         console.error('Error al seleccionar datos: ', error.message);
         return { data: null, error };
@@ -52,7 +52,7 @@ export const añadirElemento = async (proj_name) => {
         const { data, error } = await supabase
             .from('list_projects')
             .insert({ project: proj_name });
-        
+
         if (error) throw error;
 
         console.log('Inserción exitosa: ', data);

@@ -19,6 +19,10 @@ ul {
   padding: 0;
 }
 
+main {
+  flex: 1;
+}
+
 .navbar {
   display: flex;
   justify-content: space-between;
@@ -37,6 +41,7 @@ ul {
   background: linear-gradient(#fff, #fff) padding-box, linear-gradient(90deg, #40c9ff, #e81cff) border-box;
   background-size: 200% 100%;
   animation: borderAnimation 4s linear infinite;
+  margin-bottom: 100px;
 }
 
 header .sticky {
@@ -495,6 +500,72 @@ header .sticky {
   font-size: 20px;
 }
 
+/*Registro de persona*/
+#pagina-registro {
+  display: flex;
+  flex-direction: column;
+  margin-top: 100px;
+}
+
+#titulo-registro {
+  text-align: center;
+  font-size: 40px;
+}
+
+#registerForm {
+  width: 100%;
+  max-width: 400px;
+  margin: 20px auto;
+  padding: 20px;
+  background: #f8f8f8;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  font-family: Arial, sans-serif;
+}
+
+#registerForm label {
+  display: block;
+  margin: 10px 0 5px;
+  font-weight: bold;
+  color: #333;
+}
+
+#registerForm input,
+select {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 15px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 16px;
+}
+
+#registerForm input:focus,
+select:focus {
+  border-color: #007bff;
+  outline: none;
+  box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+}
+
+#registerForm button {
+  width: 100%;
+  padding: 10px;
+  background: #007bff;
+  border: none;
+  color: white;
+  font-size: 16px;
+  font-weight: bold;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+#registerForm button:hover {
+  background: #0056b3;
+}
+
+
+
 /* FOOTER */
 .footer-black {
   background: #000;
@@ -933,6 +1004,22 @@ body.dark-mode .footer-black {
   color: white;
   border: 1px solid #555;
 }
+
+.dark-mode select {
+  background-color: #333;
+  color: white;
+  border: 1px solid #555;
+}
+
+body.dark-mode #registerForm {
+  background-color: #1f1f1f;
+  color: #fff;
+}
+
+body.dark-mode #registerForm label {
+  color: #fff;
+}
+
 
 
 @-moz-keyframes borderAnimation {

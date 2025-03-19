@@ -94,9 +94,16 @@ export default defineConfig({
     ]
   },
   plugins: [
-    // Plugin para HTML
+    // Plugin para HTML (CREAR OTRO OBJETO PARA EL NUEVO HTML)
     new rspack.HtmlRspackPlugin({
       template: "./src/index.html",
+      filename: "index.html",
+      minify: true
+    }),
+    // Plugin para HTML (CREAR OTRO OBJETO PARA EL NUEVO HTML)
+    new rspack.HtmlRspackPlugin({
+      template: "./src/registro.html",
+      filename: "registro.html",
       minify: true
     }),
     // Plugin para copiar carpeta de imágenes

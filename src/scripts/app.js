@@ -2,6 +2,71 @@ import '../styles.css';
 import '../stylus/stylus.styl';
 import './darkmode.js';
 import './index.js';
+import { crearNuevoUsuario } from "./supabase.js";
+
+
+const registerForm = document.getElementById("registerForm")
+
+registerForm.addEventListener("submit", async (e) => {
+    e.preventDefault(); // Evita el recargo de la página
+
+    // Obtener los datos del formulario
+    const formData = new FormData(registerForm);
+    const username = formData.get("username").trim();
+    const email = formData.get("email").trim();
+    const celular = formData.get("celular").trim();
+    const tipoCliente = formData.get("tipoCliente").trim()
+    const password = formData.get("password").trim();
+    const confirmPassword = formData.get("confirmPassword").trim();
+
+    // Validación básica
+    if (!username || !email || !celular || !password || !confirmPassword) {
+        alert("Todos los campos son obligatorios.");
+        return;
+    }
+
+    if (password !== confirmPassword) {
+        alert("Las contraseñas no coinciden.");
+        return;
+    }
+
+    // Intentamos registrar al usuario
+    const { data, error } = await crearNuevoUsuario(username, email, celular, tipoCliente, password);
+
+    if (error) {
+        alert(`Error al registrar usuario: ${error.message}`);
+        return;
+    }
+
+    alert("Usuario registrado con éxito");
+    registerForm.reset(); // Limpiar el formulario
+});
+
+// Obtener elementos para mostrar en la página post-login, con filtro.
+export const obtenerCienElementos = async (token, filtro = '') => {
+    try {
+        // Construir URL con el filtro, en caso de no haber filtro trae todos los registros
+        const url = `https://cplmwzravtgwqtwckpkj.supabase.co/rest/v1/list_projects?select=*&project=ilike.%${filtro}%`;
+
+        const response = await fetch(url, {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+                'apikey': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImNwbG13enJhdnRnd3F0d2NrcGtqIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDIwNDg0NTQsImV4cCI6MjA1NzYyNDQ1NH0.C_H150z98w7rF0I3bFW6fL1OlVpwzc8W0Qv4gRnq504',
+                'Authorization': `Bearer ${token}`
+            }
+        });
+
+        const data = await response.json();
+
+        if (!response.ok) throw new Error(data.message || 'Error al obtener datos');
+
+        return data;
+    } catch (error) {
+        console.error('Error al obtener datos:', error.message);
+        return null;
+    }
+};
 
 window.addEventListener("scroll", function () {
     var header = document.getElementById("navbar");
