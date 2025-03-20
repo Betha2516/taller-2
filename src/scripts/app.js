@@ -3,47 +3,86 @@ import '../stylus/stylus.styl';
 import './darkmode.js';
 import './index.js';
 import { crearNuevoUsuario } from "./supabase.js";
-
+import { supabase } from "./supabase";
 
 const registerForm = document.getElementById("registerForm")
+const loginForm = document.getElementById("loginForm")
 
-registerForm.addEventListener("submit", async (e) => {
-    e.preventDefault(); // Evita el recargo de la página
+if (registerForm) {
+    registerForm.addEventListener("submit", async (e) => {
+        e.preventDefault();
 
-    // Obtener los datos del formulario
-    const formData = new FormData(registerForm);
-    const username = formData.get("username").trim();
-    const email = formData.get("email").trim();
-    const celular = formData.get("celular").trim();
-    const tipoCliente = formData.get("tipoCliente").trim()
-    const password = formData.get("password").trim();
-    const confirmPassword = formData.get("confirmPassword").trim();
+        const formData = new FormData(registerForm);
+        const username = formData.get("nombre").trim();
+        const email = formData.get("correo").trim();
+        const celular = formData.get("celular").trim();
+        const tipoCliente = formData.get("tipoCliente").trim();
+        const password = formData.get("password").trim();
+        const confirmPassword = formData.get("confirmPassword").trim();
 
-    // Validación básica
-    if (!username || !email || !celular || !password || !confirmPassword) {
-        alert("Todos los campos son obligatorios.");
-        return;
+        if (!username || !email || !celular || !password || !confirmPassword) {
+            alert("Todos los campos son obligatorios.");
+            return;
+        }
+
+        if (password !== confirmPassword) {
+            alert("Las contraseñas no coinciden.");
+            return;
+        }
+
+        const { data, error } = await crearNuevoUsuario(username, email, celular, tipoCliente, password);
+
+        if (error) {
+            alert(`Error al registrar usuario: ${error.message}`);
+            return;
+        }
+
+        alert("Usuario registrado con éxito");
+        registerForm.reset();
+        location.href = "index.html"; // Redirigir al login
+    });
+}
+
+if (loginForm) {
+    loginForm.addEventListener("submit", async (e) => {
+        e.preventDefault();
+
+        const formData = new FormData(loginForm);
+        const email = formData.get("email").trim();
+        const password = formData.get("password").trim();
+
+        if (!email || !password) {
+            alert("Por favor, ingresa tu correo y contraseña.");
+            return;
+        }
+
+        const { data, error } = await supabase.auth.signInWithPassword({ email, password });
+
+        if (error) {
+            alert("Credenciales incorrectas. Verifica tu correo y contraseña.");
+            return;
+        }
+
+        // Guardar token en localStorage
+        localStorage.setItem("token", data.session.access_token);
+        localStorage.setItem("user_email", email);
+
+        // Redirigir al usuario al panel de control
+        location.href = "panel_control.html";
+    });
+}
+
+
+// Verificar si el usuario está autenticado en el panel de control
+document.addEventListener("DOMContentLoaded", () => {
+    const token = localStorage.getItem("token");
+    if (!token && window.location.pathname.includes("panel_control.html")) {
+        location.href = "index.html";
     }
-
-    if (password !== confirmPassword) {
-        alert("Las contraseñas no coinciden.");
-        return;
-    }
-
-    // Intentamos registrar al usuario
-    const { data, error } = await crearNuevoUsuario(username, email, celular, tipoCliente, password);
-
-    if (error) {
-        alert(`Error al registrar usuario: ${error.message}`);
-        return;
-    }
-
-    alert("Usuario registrado con éxito");
-    registerForm.reset(); // Limpiar el formulario
 });
 
 // Obtener elementos para mostrar en la página post-login, con filtro.
-export const obtenerCienElementos = async (token, filtro = '') => {
+/* export const obtenerCienElementos = async (token, filtro = '') => {
     try {
         // Construir URL con el filtro, en caso de no haber filtro trae todos los registros
         const url = `https://cplmwzravtgwqtwckpkj.supabase.co/rest/v1/list_projects?select=*&project=ilike.%${filtro}%`;
@@ -66,7 +105,7 @@ export const obtenerCienElementos = async (token, filtro = '') => {
         console.error('Error al obtener datos:', error.message);
         return null;
     }
-};
+}; */
 
 window.addEventListener("scroll", function () {
     var header = document.getElementById("navbar");
@@ -79,49 +118,86 @@ document.querySelectorAll(".go-to-seccion-contacto").forEach(button => {
     });
 });
 
-// Creación de usuario en localstorage por medio de registro.
+(async () => {
+    const createProjectHtml = (project) => {
+        const projectHtml = document.createElement('div');
+        projectHtml.classList.add("list-group-item", "list-group-item-action");
+        projectHtml.style = "cursor: pointer;";
 
-document.getElementById('register-form').addEventListener('submit', function (e) {
-    e.preventDefault();
+        const projectContent = `
+        <div class="d-flex w-100 justify-content-between">
+            <h5 class="mb-1 text-capitalize">${project.nombre}</h5>
+            <small class="text-capitalize">${project.precio} USD</small>
+        </div>
+        <p class="mb-1 text-capitalize">${project.descripcion}</p>
+        <button onclick="eliminarProyecto('${project.id}')">Eliminar</button>
+        `;
 
-    // Obtener los valores que se escribieron en el formulario.
-    const username = document.getElementById('username').value;
-    const email = document.getElementById('email').value;
-    const password = document.getElementById('password').value;
+        projectHtml.innerHTML = projectContent;
+        return projectHtml;
+    };
 
-    // Inicializar array de localstorage si no está inicializado.
-    const users = JSON.parse(localStorage.getItem('users')) || [];
+    const token = localStorage.getItem("token");
 
-    // Guardar la información en texto plano
-    users.push({ username, email, password });
-    localStorage.setItem('users', JSON.stringify(users));
+    if (!token) {
+        location.href = "/login";
+        return;
+    }
 
-    alert('Registro exitoso.');
-});
+    try {
+        const projects = await fetch(
+            "https://ybhuilmbimynlforwxqn.supabase.co/rest/v1/projects?select=*",
+            {
+                headers: {
+                    "Content-Type": "application/json",
+                    "apikey": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InliaHVpbG1iaW15bmxmb3J3eHFuIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDExODg2NTEsImV4cCI6MjA1Njc2NDY1MX0.gBJidRNfK7k7ZgS54IYKQEerQKgNLeTDoWQ1RJd_uH4",
+                    "Authorization": `Bearer ${token}`
+                },
+            }
+        ).then(res => {
+            if (res.status >= 400) {
+                throw new Error(res.status);
+            }
+            return res.json();
+        });
 
-// Verificación de usuario en localstorage para inicio de sesión
+        const projectList = document.getElementById("projectList");
 
-document.addEventListener('DOMContentLoaded', function () {
-    const loginForm = document.getElementById('login-form');
-    loginForm.addEventListener('submit', function (event) {
-        event.preventDefault();
+        projects.forEach(project => {
+            const projectHtml = createProjectHtml(project);
+            projectList.append(projectHtml);
+        });
+    } catch (error) {
+        alert("Ocurrió un error al obtener los proyectos");
+    }
+})();
 
-        const username = document.getElementById('username').value;
-        const password = document.getElementById('password').value;
+// Manejar el formulario de agregar proyecto
+const projectForm = document.getElementById("projectForm");
 
-        const storedUsers = JSON.parse(localStorage.getItem('users')) || [];
+if (projectForm) {
+    projectForm.addEventListener("submit", async (e) => {
+        e.preventDefault();
 
-        const userFound = storedUsers.some(user =>
-            user.username === username && user.password === password
-        );
+        const formData = new FormData(projectForm);
+        const nombre = formData.get("nombre").trim();
+        const descripcion = formData.get("descripcion").trim();
+        const precio = parseFloat(formData.get("precio"));
 
-        if (userFound) {
-            alert('Inicio de sesión exitoso');
-
-        } else {
-            alert('Inicio de sesión fallido');
+        if (!nombre || !descripcion || isNaN(precio)) {
+            alert("Todos los campos son obligatorios.");
+            return;
         }
 
-        return false;
+        const { data, error } = await agregarProyecto(nombre, descripcion, precio);
+
+        if (error) {
+            alert(`Error al agregar proyecto: ${error.message}`);
+            return;
+        }
+
+        alert("Proyecto agregado con éxito");
+        projectForm.reset();
+        location.reload();
     });
-});
+}

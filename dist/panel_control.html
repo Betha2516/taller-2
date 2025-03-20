@@ -5,42 +5,57 @@
                 <ul>
                     <li class="menu-item"><a class="active" id="menu_1" href="index.html">Inicio</a></li>
                     <li class="menu-item"><a id="menu_2" href="index.html">Sobre nosotros</a></li>
-                    <li class="menu-item" style="margin-right:20px;"><a id="menu_3" href="index.html">Proyectos</a></li>
+                    <li class="menu-item" style="margin-right:20px;"><a id="menu_3" href="#">Proyectos</a></li>
                     <li class="menu-item"><button id="menu_4" class="go-to-seccion-contacto">Contacto</button></li>
 
                 </ul>
             </nav>
         </div>
     </header>
-    <main id="pagina-registro">
+    <main id="pagina-control">
         <a href="https://www.whatsapp.com/?lang=es_LA" class="floating-button"></a>
         <button id="dark-mode-toggle" class="dark-mode-toggle">🌙</button>
-        <h1 id="titulo-registro">Resgistrarse</h1>
-        <form id="registerForm">
-            <label for="nombre">Nombre:</label>
-            <input type="text" id="nombre" name="nombre" required>
+        <div class="panel">
+            <div class="lista-servicios" style="min-width: 300px;" id="userList">
+                <h1 id="titulo-control">Servicios</h1>
+                <form id="projectForm">
+                    <label for="nombre">Nombre del Proyecto:</label>
+                    <input type="text" id="nombre" name="nombre" required>
 
-            <label for="correo">Correo:</label>
-            <input type="email" id="correo" name="correo" required>
+                    <label for="descripcion">Descripción:</label>
+                    <input type="text" id="descripcion" name="descripcion" required>
 
-            <label for="celular">Celular:</label>
-            <input type="tel" id="celular" name="celular" pattern="[0-9]{10}" required>
+                    <label for="precio">Presupuesto Estimado:</label>
+                    <input type="number" id="precio" name="precio" required>
 
-            <label for="tipoCliente">Tipo de Cliente:</label>
-            <select id="tipoCliente" name="tipoCliente" required>
-                <option value="">Seleccione una opción</option>
-                <option value="particular">Particular</option>
-                <option value="servicio">Prestador de servicios</option>
-            </select>
+                    <button type="submit">Agregar Proyecto</button>
+                </form>
 
-            <label for="password">Contraseña:</label>
-            <input type="password" id="password" name="password" required>
+                
+                <div id="projectList"></div>
+            </div>
 
-            <label for="confirmPassword">Confirmar Contraseña:</label>
-            <input type="password" id="confirmPassword" name="confirmPassword" required>
+            <div class="content">
+                <form>
+                    <h3>Actualizar usuario</h3>
+                    <div class="mb-3">
+                        <label for="name" class="form-label">Nombre</label>
+                        <input type="text" class="form-control" id="name">
+                    </div>
+                    <div class="mb-3">
+                        <label for="rol" class="form-label">Rol</label>
+                        <input type="text" class="form-control" id="rol">
+                    </div>
+                    <div class="mb-3">
+                        <label for="career" class="form-label">Carrera</label>
+                        <input type="text" class="form-control" id="career">
+                    </div>
+                    <button type="submit" class="btn btn-primary">Actualizar</button>
+                </form>
+            </div>
+        </div>
 
-            <button type="submit">Registrarse</button>
-        </form>
+
     </main>
     <footer class="footer-black">
         <div class="barra-redes">

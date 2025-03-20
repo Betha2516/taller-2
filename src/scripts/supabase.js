@@ -47,41 +47,43 @@ export const obtenerDatosCredenciales = async (username) => {
 }
 
 // Añadir proyecto a la tabla list_projects
-export const añadirElemento = async (proj_name) => {
+export const agregarProyecto = async (nombre, descripcion, precio) => {
     try {
         const { data, error } = await supabase
-            .from('list_projects')
-            .insert({ project: proj_name });
+            .from('projects')
+            .insert({ nombre, descripcion, precio });
 
         if (error) throw error;
-
-        console.log('Inserción exitosa: ', data);
-        return { data: data, error: null };
-
+        return { data, error: null };
     } catch (error) {
-        console.error('Error al insertar datos:', error.message);
         return { data: null, error };
     }
 };
 
-// Eliminar proyecto de la tabla list_projects
+export const obtenerProyectos = async () => {
+    try {
+        const { data, error } = await supabase
+            .from('projects')
+            .select('*');
+
+        if (error) throw error;
+        return data;
+    } catch (error) {
+        return [];
+    }
+};
+
 export const eliminarProyecto = async (id) => {
     try {
-        const response = await supabase
-            .from('list_projects')
+        const { error } = await supabase
+            .from('projects')
             .delete()
             .eq('id', id);
 
-        // Puedes acceder a los datos y errores así:
-        const { data, error } = response;
-
         if (error) throw error;
-
-        console.log('Eliminación exitosa: ', data);
-        return { data, error: null };
-
+        alert("Proyecto eliminado");
+        location.reload();
     } catch (error) {
-        console.error('Error al eliminar datos:', error.message);
-        return { data: null, error };
+        alert("Error al eliminar proyecto");
     }
 };

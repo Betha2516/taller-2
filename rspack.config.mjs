@@ -106,6 +106,11 @@ export default defineConfig({
       filename: "registro.html",
       minify: true
     }),
+    new rspack.HtmlRspackPlugin({
+      template: "./src/panel_control.html",
+      filename: "panel_control.html",
+      minify: true
+    }),
     // Plugin para copiar carpeta de imágenes
     new rspack.CopyRspackPlugin({
       patterns: [
