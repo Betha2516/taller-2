@@ -1,13 +1,21 @@
 import '../styles.css';
 import '../stylus/stylus.styl';
 import './darkmode.js';
-import './index.js';
-import { crearNuevoUsuario } from "./supabase.js";
-import { supabase } from "./supabase";
+import { crearNuevoUsuario, crearUsuarioSignUp, loginUsuario } from "./supabase.js";
+import { obtenerDatosCredenciales } from "./supabase.js"
 
+// Verificar si hay un token para iniciar sesión automáticamente. En caso de que lo haya, redirecciona al panel de control.
+const token = localStorage.getItem("token");
+
+if (token) {
+    location.href = "panel_control.html";
+}
+
+// Lógica de formularios de registro e inicio de sesión.
 const registerForm = document.getElementById("registerForm")
 const loginForm = document.getElementById("loginForm")
 
+    // Función para formulario de registro.
 if (registerForm) {
     registerForm.addEventListener("submit", async (e) => {
         e.preventDefault();
@@ -15,12 +23,10 @@ if (registerForm) {
         const formData = new FormData(registerForm);
         const username = formData.get("nombre").trim();
         const email = formData.get("correo").trim();
-        const celular = formData.get("celular").trim();
-        const tipoCliente = formData.get("tipoCliente").trim();
         const password = formData.get("password").trim();
         const confirmPassword = formData.get("confirmPassword").trim();
 
-        if (!username || !email || !celular || !password || !confirmPassword) {
+        if (!username || !email || !password || !confirmPassword) {
             alert("Todos los campos son obligatorios.");
             return;
         }
@@ -30,12 +36,15 @@ if (registerForm) {
             return;
         }
 
-        const { data, error } = await crearNuevoUsuario(username, email, celular, tipoCliente, password);
+        // const { data, error } = await crearNuevoUsuario(username, email, password);
+        const { data, error } = await crearUsuarioSignUp(username, email, password);
 
         if (error) {
             alert(`Error al registrar usuario: ${error.message}`);
             return;
         }
+
+        const { data_user, error_user } = await crearNuevoUsuario(username, email);
 
         alert("Usuario registrado con éxito");
         registerForm.reset();
@@ -43,12 +52,13 @@ if (registerForm) {
     });
 }
 
+    // Función para el formulario de login.
 if (loginForm) {
     loginForm.addEventListener("submit", async (e) => {
         e.preventDefault();
 
         const formData = new FormData(loginForm);
-        const email = formData.get("email").trim();
+        const email = formData.get("username").trim();
         const password = formData.get("password").trim();
 
         if (!email || !password) {
@@ -56,10 +66,12 @@ if (loginForm) {
             return;
         }
 
-        const { data, error } = await supabase.auth.signInWithPassword({ email, password });
+        console.log(email);
+        console.log(password);
+
+        const { data, error } = await loginUsuario(email, password);
 
         if (error) {
-            alert("Credenciales incorrectas. Verifica tu correo y contraseña.");
             return;
         }
 
@@ -67,12 +79,14 @@ if (loginForm) {
         localStorage.setItem("token", data.session.access_token);
         localStorage.setItem("user_email", email);
 
+        console.log(localStorage.getItem("token"));
+
         // Redirigir al usuario al panel de control
         location.href = "panel_control.html";
     });
 }
 
-
+/*
 // Verificar si el usuario está autenticado en el panel de control
 document.addEventListener("DOMContentLoaded", () => {
     const token = localStorage.getItem("token");
@@ -80,7 +94,7 @@ document.addEventListener("DOMContentLoaded", () => {
         location.href = "index.html";
     }
 });
-
+*/
 // Obtener elementos para mostrar en la página post-login, con filtro.
 /* export const obtenerCienElementos = async (token, filtro = '') => {
     try {
@@ -118,6 +132,7 @@ document.querySelectorAll(".go-to-seccion-contacto").forEach(button => {
     });
 });
 
+/*
 (async () => {
     const createProjectHtml = (project) => {
         const projectHtml = document.createElement('div');
@@ -171,6 +186,7 @@ document.querySelectorAll(".go-to-seccion-contacto").forEach(button => {
         alert("Ocurrió un error al obtener los proyectos");
     }
 })();
+*/
 
 // Manejar el formulario de agregar proyecto
 const projectForm = document.getElementById("projectForm");
@@ -198,6 +214,8 @@ if (projectForm) {
 
         alert("Proyecto agregado con éxito");
         projectForm.reset();
-        location.reload();
+
+        // Recargar solo una sección de la página sin redirigir
+        // Puedes actualizar dinámicamente la lista de proyectos aquí en lugar de recargar todo
     });
 }

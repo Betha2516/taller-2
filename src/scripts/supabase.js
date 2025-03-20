@@ -4,29 +4,71 @@ const supabaseUrl = 'https://cplmwzravtgwqtwckpkj.supabase.co'
 const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImNwbG13enJhdnRnd3F0d2NrcGtqIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDIwNDg0NTQsImV4cCI6MjA1NzYyNDQ1NH0.C_H150z98w7rF0I3bFW6fL1OlVpwzc8W0Qv4gRnq504'
 const supabase = createClient(supabaseUrl, supabaseKey)
 
-// Registrar usuario en la base de datos (Perfecto para poner en el register)
-export const crearNuevoUsuario = async (username, email, celular, tipoCliente, password) => {
+// Revisar si hay un token guardado
+const token = localStorage.getItem("access_token");
+
+if (token) {
+    supabase.auth.setSession({
+        access_token: token,
+        refresh_token: token
+    });
+}
+
+// Crear usuario en auth de supabase.
+export const crearUsuarioSignUp = async (username, email, password) => {
     try {
-        const { data, error } = await supabase
-            .from('page_users')
-            .insert({ username: username, email: email, celular: celular, tipoCliente: tipoCliente, password: password });
+        const { data, error } = await supabase.auth.signUp({
+            email: email,
+            password: password,
+            options: {
+                data: {
+                    username: username
+                }
+            }
+        });
 
-        if (error) throw error;
+        if (error) {
+            alert("Ha ocurrido un error. Intentalo nuevamente.");
+            return { data: null, error };
+        }
 
-        console.log('Inserción exitosa: ', data);
-        return { data: data, error: null };
+        return { data, error: null };
 
-    } catch (error) {
-        console.error('Error al insertar datos:', error.message);
-        return { data: null, error };
+    } catch (err) {
+        alert("Ocurrió un error inesperado. Inténtalo nuevamente.");
+        return { data: null, error: err };
     }
-};
+}
+
+// Verificar usuario en auth de supabase.
+export const loginUsuario = async (email, password) => {
+    try {
+        const { data, error } = await supabase.auth.signInWithPassword({
+            email: email,
+            password: password
+        });
+
+        if (error) {
+            alert("Credenciales incorrectas. Por favor, verifica tu correo y contraseña.");
+            return { data: null, error };
+        }
+
+        console.log("Inicio de sesión exitoso:", data);
+        alert("Inicio de sesión exitoso. Redirigiendo al panel de control...");
+        return { data, error: null };
+
+    } catch (err) {
+        alert("Ocurrió un error inesperado. Inténtalo nuevamente.");
+        return { data: null, error: err };
+    }
+}
 
 // Verificación de credenciales (para login)
 export const obtenerDatosCredenciales = async (username) => {
+
     try {
         const { data, error } = await supabase
-            .from('characters')
+            .from('page_users')
             .select('username, password')
             .eq('username', username);
 
@@ -56,6 +98,23 @@ export const agregarProyecto = async (nombre, descripcion, precio) => {
         if (error) throw error;
         return { data, error: null };
     } catch (error) {
+        return { data: null, error };
+    }
+};
+
+// Registrar usuario en la base de datos (Perfecto para poner en el register)
+export const crearNuevoUsuario = async (username, email) => {
+    try {
+        const { data, error } = await supabase
+            .from('page_users')
+            .insert({ username: username, email: email});
+
+        if (error) throw error;
+
+        return { data: data, error: null };
+
+    } catch (error) {
+        console.error('Error al insertar datos:', error.message);
         return { data: null, error };
     }
 };
