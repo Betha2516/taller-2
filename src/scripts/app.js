@@ -2,7 +2,7 @@ import '../styles.css';
 import '../stylus/stylus.styl';
 import './darkmode.js';
 import { crearNuevoUsuario, crearUsuarioSignUp, loginUsuario } from "./supabase.js";
-import { obtenerDatosCredenciales } from "./supabase.js"
+import { obtenerProyectos } from "./supabase.js"
 
 const token = localStorage.getItem("token");
 
@@ -177,6 +177,73 @@ document.addEventListener("DOMContentLoaded", () => {
 })();
 */
 
+/*
+***********************************************************
+** Funciones para interactividad de componentes en index ** 
+***********************************************************
+*/
+
+// Sticky navbar.
+window.addEventListener("scroll", function () {
+    var header = document.getElementById("navbar");
+    header.classList.toggle("sticky", this.window.scrollY > 0);
+})
+
+// Botón que redirige a contacto.
+document.querySelectorAll(".go-to-seccion-contacto").forEach(button => {
+    button.addEventListener("click", function () {
+        document.getElementById("seccion-contacto").scrollIntoView({ behavior: "smooth" });
+    });
+});
+
+/*
+*************************************************
+** Manejo de formularios para panel de control ** 
+*************************************************
+*/
+
+// Manejar formulario para agregar proyectos.
+const proyectoForm = document.getElementById("projectForm");
+
+if (proyectoForm) {
+    proyectoForm.addEventListener("submit", async (e) => {
+        e.preventDefault();
+
+        const formData = new FormData(proyectoForm);
+        const proyecto = formData.get("proyecto").trim();
+        const empresa = formData.get("empresa").trim();
+
+        if (!proyecto || !empresa) {
+            alert("Por favor, completa todos los campos.");
+            return;
+        }
+
+        const { data, error } = await agregarProyecto(proyecto, empresa);
+
+        if (error) {
+            alert("Error al agregar el proyecto. Inténtalo nuevamente.");
+            return;
+        }
+
+        alert("Proyecto agregado con éxito");
+        proyectoForm.reset();
+        location.reload();
+    });
+}
+
+// Trigger para eliminar proyectos de la base de datos.
+const eliminarBotones = document.querySelectorAll(".eliminar-proyecto");
+
+eliminarBotones.forEach(boton => {
+    boton.addEventListener("click", async (e) => {
+        const id = e.target.dataset.id;
+        if (id && confirm("¿Estás seguro de que deseas eliminar este proyecto?")) {
+            await eliminarProyecto(id);
+        }
+    });
+});
+
+/*
 // Manejar el formulario de agregar proyecto
 const projectForm = document.getElementById("projectForm");
 
@@ -208,22 +275,45 @@ if (projectForm) {
         // Puedes actualizar dinámicamente la lista de proyectos aquí en lugar de recargar todo
     });
 }
-
-/*
-***********************************************************
-** Funciones para interactividad de componentes en index ** 
-***********************************************************
 */
 
-// Sticky navbar.
-window.addEventListener("scroll", function () {
-    var header = document.getElementById("navbar");
-    header.classList.toggle("sticky", this.window.scrollY > 0);
-})
+/*
+**********************************************
+** Renderizar registros en panel de control ** 
+**********************************************
+*/
 
-// Botón que redirige a contacto.
-document.querySelectorAll(".go-to-seccion-contacto").forEach(button => {
-    button.addEventListener("click", function () {
-        document.getElementById("seccion-contacto").scrollIntoView({ behavior: "smooth" });
-    });
+document.addEventListener("DOMContentLoaded", async () => {
+    if (window.location.pathname.endsWith("panel_control.html")) {  // Verifica si estás en panel_control.html
+        const proyectosContainer = document.getElementById("proyectosContainer");
+
+        try {
+            const proyectos = await obtenerProyectos(); // Llamada a tu función
+
+            if (proyectos.length === 0) {
+                proyectosContainer.innerHTML = `<p>No hay proyectos para mostrar.</p>`;
+                return;
+            }
+
+            proyectosContainer.innerHTML = proyectos.map(proyecto => `
+                <div class="proyecto-item border p-2 mb-2">
+                    <h3>${proyecto.project}</h3>
+                    <p>Empresa: ${proyecto.company}</p>
+                    <button class="eliminar-proyecto" data-id="${proyecto.id}">Eliminar</button>
+                </div>
+            `).join('');
+
+            // Añadir funcionalidad para eliminar proyectos
+            document.querySelectorAll(".eliminar-proyecto").forEach(boton => {
+                boton.addEventListener("click", async (e) => {
+                    const id = e.target.dataset.id;
+                    await eliminarProyecto(id);
+                    e.target.parentElement.remove(); // Elimina el elemento del DOM
+                });
+            });
+        } catch (error) {
+            proyectosContainer.innerHTML = `<p>Error al cargar proyectos.</p>`;
+            console.error(error);
+        }
+    }
 });

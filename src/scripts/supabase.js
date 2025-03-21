@@ -89,11 +89,11 @@ export const obtenerDatosCredenciales = async (username) => {
 }
 
 // Añadir proyecto a la tabla list_projects
-export const agregarProyecto = async (nombre, descripcion, precio) => {
+export const agregarProyecto = async (proyecto, empresa) => {
     try {
         const { data, error } = await supabase
-            .from('projects')
-            .insert({ nombre, descripcion, precio });
+            .from('list_projects')
+            .insert({ proyecto, empresa });
 
         if (error) throw error;
         return { data, error: null };
@@ -121,21 +121,24 @@ export const crearNuevoUsuario = async (username, email) => {
 
 export const obtenerProyectos = async () => {
     try {
+
         const { data, error } = await supabase
-            .from('projects')
+            .from('list_projects')
             .select('*');
 
-        if (error) throw error;
+        console.log("Respuesta recibida de Supabase:", { data, error });
+
         return data;
     } catch (error) {
         return [];
     }
 };
 
+
 export const eliminarProyecto = async (id) => {
     try {
         const { error } = await supabase
-            .from('projects')
+            .from('list_projects')
             .delete()
             .eq('id', id);
 
