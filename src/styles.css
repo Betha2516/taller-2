@@ -697,6 +697,24 @@ select:focus {
   background: #c82333;
 }
 
+/* Barra de búsqueda */
+.search-bar {
+  width: 100%;
+  padding: 8px;
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 14px;
+  margin-top: 10px;
+}
+
+/* Cambiar borde al enfocar */
+.search-bar:focus {
+  outline: none;
+  border-color: #007bff;
+  box-shadow: 0 0 5px rgba(0, 123, 255, 0.3);
+}
+
 
 /* Responsivo para pantallas pequeñas */
 @media (max-width: 768px) {
