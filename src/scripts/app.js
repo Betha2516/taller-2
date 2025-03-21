@@ -15,7 +15,7 @@ if (token && !window.location.pathname.includes("panel_control.html")) {
 const registerForm = document.getElementById("registerForm")
 const loginForm = document.getElementById("loginForm")
 
-    // Función para formulario de registro.
+// Función para formulario de registro.
 if (registerForm) {
     registerForm.addEventListener("submit", async (e) => {
         e.preventDefault();
@@ -52,7 +52,7 @@ if (registerForm) {
     });
 }
 
-    // Función para el formulario de login.
+// Función para el formulario de login.
 if (loginForm) {
     loginForm.addEventListener("submit", async (e) => {
         e.preventDefault();
@@ -296,7 +296,7 @@ document.addEventListener("DOMContentLoaded", async () => {
             }
 
             proyectosContainer.innerHTML = proyectos.map(proyecto => `
-                <div class="proyecto-item border p-2 mb-2">
+                <div class="proyecto-item">
                     <h3>${proyecto.project}</h3>
                     <p>Empresa: ${proyecto.company}</p>
                     <button class="eliminar-proyecto" data-id="${proyecto.id}">Eliminar</button>

@@ -649,6 +649,55 @@ select:focus {
   background-color: #0056b3;
 }
 
+/* Seccopn de card de proyecto individual */
+/* Estilos para cada proyecto agregado dinámicamente */
+.proyecto-item {
+  background: #ffffff;
+  padding: 10px;
+  border-radius: 8px;
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
+  margin-bottom: 10px;
+  transition: transform 0.2s ease-in-out;
+}
+
+/* Hover para resaltar cada proyecto */
+.proyecto-item:hover {
+  transform: scale(1.02);
+  background: #f8f8f8;
+}
+
+/* Estilos para el título del proyecto */
+.proyecto-item h3 {
+  font-size: 18px;
+  margin: 5px 0;
+  color: #333;
+}
+
+/* Estilos para la descripción */
+.proyecto-item p {
+  font-size: 14px;
+  color: #666;
+  margin: 5px 0;
+}
+
+/* Estilos para el botón de eliminar */
+.eliminar-proyecto {
+  background: #dc3545;
+  color: white;
+  border: none;
+  padding: 5px 10px;
+  font-size: 14px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background 0.3s ease-in-out;
+}
+
+/* Hover para el botón de eliminar */
+.eliminar-proyecto:hover {
+  background: #c82333;
+}
+
+
 /* Responsivo para pantallas pequeñas */
 @media (max-width: 768px) {
   .panel-proyectos {
