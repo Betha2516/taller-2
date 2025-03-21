@@ -4,10 +4,10 @@ import './darkmode.js';
 import { crearNuevoUsuario, crearUsuarioSignUp, loginUsuario } from "./supabase.js";
 import { obtenerDatosCredenciales } from "./supabase.js"
 
-// Verificar si hay un token para iniciar sesión automáticamente. En caso de que lo haya, redirecciona al panel de control.
 const token = localStorage.getItem("token");
 
-if (token) {
+// Verificar si el token existe y la URL actual no es 'panel_control.html'
+if (token && !window.location.pathname.includes("panel_control.html")) {
     location.href = "panel_control.html";
 }
 
@@ -121,17 +121,6 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 }; */
 
-window.addEventListener("scroll", function () {
-    var header = document.getElementById("navbar");
-    header.classList.toggle("sticky", this.window.scrollY > 0);
-})
-
-document.querySelectorAll(".go-to-seccion-contacto").forEach(button => {
-    button.addEventListener("click", function () {
-        document.getElementById("seccion-contacto").scrollIntoView({ behavior: "smooth" });
-    });
-});
-
 /*
 (async () => {
     const createProjectHtml = (project) => {
@@ -219,3 +208,22 @@ if (projectForm) {
         // Puedes actualizar dinámicamente la lista de proyectos aquí en lugar de recargar todo
     });
 }
+
+/*
+***********************************************************
+** Funciones para interactividad de componentes en index ** 
+***********************************************************
+*/
+
+// Sticky navbar.
+window.addEventListener("scroll", function () {
+    var header = document.getElementById("navbar");
+    header.classList.toggle("sticky", this.window.scrollY > 0);
+})
+
+// Botón que redirige a contacto.
+document.querySelectorAll(".go-to-seccion-contacto").forEach(button => {
+    button.addEventListener("click", function () {
+        document.getElementById("seccion-contacto").scrollIntoView({ behavior: "smooth" });
+    });
+});
